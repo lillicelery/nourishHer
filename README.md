@@ -1,56 +1,85 @@
-# Welcome to your Expo app 👋
+# NourishHer
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> Nourish her. Every phase.
 
-## Get started
+NourishHer is an iOS app built with [Expo](https://expo.dev) and React Native, written in TypeScript. It is organized around the four phases of the menstrual cycle: menstrual, follicular, ovulation and luteal.
 
-1. Install dependencies
+**Status:** early foundation. The app currently shows a branded landing screen. Navigation and features come next.
 
-   ```bash
-   npm install
-   ```
+## Tech stack
 
-2. Start the app
+- [Expo SDK 58](https://docs.expo.dev/versions/v58.0.0/) with React Native 0.88 and React 19
+- TypeScript (strict mode)
+- [pnpm](https://pnpm.io) for package management
+- [EAS](https://docs.expo.dev/eas/) for cloud builds
+- iOS only
 
-   ```bash
-   npx expo start
-   ```
+## Getting started
 
-In the output, you'll find options to open the app in a
+### Prerequisites
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- [Node.js](https://nodejs.org) 22.13 or newer (24 LTS recommended)
+- [pnpm](https://pnpm.io/installation)
+- An iPhone with [Expo Go](https://apps.apple.com/app/expo-go/id982107779) installed
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+You do not need a Mac or Xcode to run the app on a physical iPhone.
 
-## Get a fresh project
-
-When you're ready, run:
+### Install and run
 
 ```bash
-npm run reset-project
+pnpm install
+pnpm start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Scan the QR code with your iPhone camera to open the app in Expo Go. Sign in to the same Expo account in Expo Go and in your terminal (`npx expo login`) so the project shows up.
 
-### Other setup steps
+If your phone cannot reach your computer over the local network, for example when developing inside WSL, use a tunnel:
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```bash
+pnpm start --tunnel
+```
 
-## Learn more
+On a Mac you can also launch the iOS simulator directly:
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+pnpm ios
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Scripts
 
-## Join the community
+| Command          | Description                          |
+| ---------------- | ------------------------------------ |
+| `pnpm start`     | Start the Expo dev server            |
+| `pnpm ios`       | Start the dev server and open the iOS simulator (macOS only) |
+| `pnpm lint`      | Lint the project with Expo's ESLint config |
+| `npx tsc --noEmit` | Type-check the project             |
 
-Join our community of developers creating universal apps.
+Add Expo packages with `npx expo install <package>` so versions stay compatible with the SDK.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Project structure
+
+```
+.
+├── App.tsx               # Root component, renders HomeScreen
+├── index.ts              # Entry point (registerRootComponent)
+├── app.json              # Expo config
+├── eas.json              # EAS Build profiles
+└── src/
+    ├── components/       # Reusable UI components
+    ├── constants/
+    │   └── theme.ts      # Colors, font sizes, spacing
+    ├── navigation/       # Navigation setup
+    ├── screens/
+    │   └── HomeScreen.tsx
+    └── types/            # Shared TypeScript types
+```
+
+## Releasing
+
+To ship to TestFlight or the App Store, build with [EAS Build](https://docs.expo.dev/build/introduction/) (`eas.json` is already configured). This requires an Apple Developer Program membership.
+
+## Documentation
+
+- [Expo SDK 58 docs](https://docs.expo.dev/versions/v58.0.0/)
+- [Expo Go](https://expo.dev/go)
+- [EAS Build](https://docs.expo.dev/build/introduction/)
